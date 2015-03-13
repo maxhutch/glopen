@@ -43,9 +43,9 @@ Install
 
 It depends on globussh_, a light-weight wrapper around the globus SSH interface.
 
-.. |Version Status| image:: https://pypip.in/v/slict/badge.png
-   :target: https://pypi.python.org/pypi/slict/
-.. |Downloads| image:: https://pypip.in/d/slict/badge.png
+.. |Version Status| image:: https://pypip.in/v/glopen/badge.png
+   :target: https://pypi.python.org/pypi/glopen/
+.. |Downloads| image:: https://pypip.in/d/glopen/badge.png
    :target: https://pypi.python.org/pypi/slict/
 .. _globussh: https://github.com/maxhutch/globussh
 
