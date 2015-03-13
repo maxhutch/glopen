@@ -1,3 +1,3 @@
 from .core import glopen, glopen_many
 
-__version__ = '0.0.4'
+__version__ = '0.0.7'

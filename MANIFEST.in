@@ -1,0 +1,7 @@
+recursive-include glopen *.py
+
+include requirements.txt
+include setup.py
+include README.rst
+include LICENSE
+include MANIFEST.in
