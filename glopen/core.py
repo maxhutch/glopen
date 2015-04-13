@@ -18,7 +18,8 @@ tdir = mkdtemp(prefix=config["tempdir"])
 
 @contextmanager
 def glopen(filename, mode='rb', endpoint = None):
-    if endpoint is None:
+    """Open filename on endpoint by copying to/from a local temporary file."""
+    if endpoint is None or endpoint == config["local_endpoint"]:
         f = open(filename, mode)
         yield f
         f.close()
@@ -37,7 +38,12 @@ def glopen(filename, mode='rb', endpoint = None):
 
 @contextmanager
 def glopen_many(filenames, mode='rb', endpoint = None):
-    if endpoint is None:
+    """Open each of filenames on endpoint by copying to/from local temporary files.
+
+    By opening many files at once, the globus transfers are coalesced, improving 
+    performance for many small files.
+    """
+    if endpoint is None or endpoint == config["local_endpoint"]:
         fs = []
         for fn in filenames:
           fs.append(open(fn, mode))
