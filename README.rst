@@ -8,11 +8,9 @@ Open-like context managers for remote globus files.
  
 1. Creates a temporary file
 2. [On a read mode:] Transfers the remote file to the temporary file
-3. Opens the temporary file with the given mode
-4. Yields the open temporary file
-5. Closes the temporary file
-6. [On a write mode:] Transfers the temporary file to the remote file
-7. Deletes the temporary file
+3. Yields the open temporary file
+4. [On a write mode:] Transfers the temporary file to the remote file
+5. Deletes the temporary file
 
 ``glopen_many(filenames, mode, endpoint)`` takes a list of filenames and yeilds a list of open files.  
 The remote copies are grouped into a single globus transfer, improving performance for small files.
