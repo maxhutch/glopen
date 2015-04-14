@@ -27,13 +27,13 @@ def glopen(filename, mode='rb', endpoint = None):
         fo, fn = mkstemp(dir=tdir) 
         if mode == 'rb' or mode == 'r':
             transfer = "{:s}/{:s} {:s}/{:s}".format(endpoint, filename, config["local_endpoint"], fn)
-            gl.transfer_sync(transfer, "glopen_read")
+            gl.transfer(transfer, "glopen_read")
         f = fdopen(fo, mode)
         yield f
         f.close()
         if mode == 'wb' or mode == 'w':
             transfer = "{:s}/{:s} {:s}/{:s}".format(config["local_endpoint"], fn, endpoint, filename)
-            gl.transfer_sync(transfer, "glopen_write")
+            gl.transfer(transfer, "glopen_write")
         unlink(fn)
 
 @contextmanager
@@ -60,7 +60,7 @@ def glopen_many(filenames, mode='rb', endpoint = None):
             for i in range(len(filenames)):
               transfer += "{:s}/{:s} {:s}/{:s}\n".format(endpoint, filenames[i], 
                                                       config["local_endpoint"], temps[i][1])
-            gl.transfer_sync(transfer, "glopen_read")
+            gl.transfer(transfer, "glopen_read")
         fs = []
         for i in range(len(filenames)):
           fs.append(fdopen(temps[i][0], mode))
@@ -73,6 +73,6 @@ def glopen_many(filenames, mode='rb', endpoint = None):
               transfer += "{:s}/{:s} {:s}/{:s}\n".format(config["local_endpoint"], temps[i][1],
                                                          endpoint, filenames[i]
                                                         )
-            gl.transfer_sync(transfer, "glopen_write")
+            gl.transfer(transfer, "glopen_write")
         for i in range(len(filenames)):
           unlink(temps[i][1])
